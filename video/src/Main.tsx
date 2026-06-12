@@ -31,7 +31,7 @@ export const Main: React.FC = () => {
   const { fps } = useVideoConfig();
   return (
     <AbsoluteFill style={{ background: colors.bg }}>
-      <Audio src={staticFile('audio/music.mp3')} volume={0.16} />
+      <Audio src={staticFile('audio/music.mp3')} volume={0.2} />
       <Series>
         {SCENES.map(([id, Component]) => (
           <Series.Sequence key={id} durationInFrames={sceneDurationInFrames(id, fps)}>

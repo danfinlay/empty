@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Img, interpolate, staticFile } from 'remotion';
 import { fadeAt, springAt, useClock } from '../components/anim';
+import { Embers } from '../components/Effects';
 import { LavaTitle } from '../components/LavaTitle';
 import { SceneShell } from '../components/SceneShell';
 import { colors, fonts } from '../theme';
@@ -12,6 +13,7 @@ export const Title: React.FC = () => {
   const glow = 0.5 + 0.2 * Math.sin(sec * 2);
   return (
     <SceneShell id="title">
+      <Embers />
       <AbsoluteFill
         style={{
           justifyContent: 'center',

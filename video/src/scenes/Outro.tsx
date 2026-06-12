@@ -1,16 +1,20 @@
 import React from 'react';
 import { AbsoluteFill, Img, staticFile } from 'remotion';
 import { fadeAt, springAt, useClock } from '../components/anim';
+import { Embers } from '../components/Effects';
 import { LavaTitle } from '../components/LavaTitle';
 import { SceneShell } from '../components/SceneShell';
 import { colors, fonts } from '../theme';
 
+const URL_AT = 10.3;
+
 export const Outro: React.FC = () => {
   const { frame, fps, sec } = useClock();
   const logoIn = springAt(frame, fps, 0.2, { damping: 16 });
-  const urlIn = springAt(frame, fps, 9.6, { damping: 15 });
+  const urlIn = springAt(frame, fps, URL_AT, { damping: 12 });
   return (
-    <SceneShell id="outro">
+    <SceneShell id="outro" shakes={[{ at: URL_AT, amp: 9 }]}>
+      <Embers />
       <AbsoluteFill
         style={{
           alignItems: 'center',
@@ -33,7 +37,7 @@ export const Outro: React.FC = () => {
             fontSize: 40,
             fontWeight: 600,
             color: colors.cyan,
-            opacity: fadeAt(frame, fps, 1.2, 0.6),
+            opacity: fadeAt(frame, fps, 1.0, 0.6),
             textAlign: 'center',
           }}
         >

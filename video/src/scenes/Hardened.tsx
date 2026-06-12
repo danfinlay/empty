@@ -77,22 +77,22 @@ export const Hardened: React.FC = () => {
           <span style={{ color: colors.dim, fontWeight: 600 }}>(SES, by Agoric)</span>
         </SceneHeading>
         <div style={{ display: 'flex', flexDirection: 'row', gap: 70 }}>
-          <Column at={1.6} label="lockdown() — freeze the foundations" frame={frame} fps={fps}>
+          <Column at={3.7} label="lockdown() — freeze the foundations" frame={frame} fps={fps}>
             <Code
               code={LOCKDOWN}
               fontSize={27}
-              typeStartSec={1.9}
-              typeDurSec={3.4}
+              typeStartSec={4.0}
+              typeDurSec={3.2}
               width={780}
               accent={colors.cyan}
             />
           </Column>
-          <Column at={7.6} label="Compartment — isolate each package" frame={frame} fps={fps}>
+          <Column at={8.9} label="Compartment — isolate each package" frame={frame} fps={fps}>
             <Code
               code={COMPARTMENT}
               fontSize={27}
-              typeStartSec={7.9}
-              typeDurSec={3.4}
+              typeStartSec={9.2}
+              typeDurSec={3.2}
               width={780}
               accent={colors.cyan}
             />

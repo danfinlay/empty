@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill } from 'remotion';
 import { springAt, useClock } from '../components/anim';
+import { ImpactFlash } from '../components/Effects';
 import { Icon } from '../components/Icon';
 import { SceneShell } from '../components/SceneShell';
 import { colors } from '../theme';
@@ -8,7 +9,7 @@ import { Pipeline, SceneHeading } from './Pipeline';
 
 // horizontal offsets of the three stage boxes within the pipeline layout
 const STAGE_X = [-442, 0, 442];
-const BEATS = [4.8, 7.8, 10.6];
+const BEATS = [3.7, 7.2, 9.6];
 
 export const Stages: React.FC = () => {
   const { frame, fps } = useClock();
@@ -21,7 +22,10 @@ export const Stages: React.FC = () => {
     (STAGE_X[2] - STAGE_X[1]) * move2;
   const hop = Math.abs(Math.sin((move1 + move2) * Math.PI)) * -60;
   return (
-    <SceneShell id="stages">
+    <SceneShell id="stages" shakes={BEATS.map((at) => ({ at, amp: 7 }))}>
+      {BEATS.map((at) => (
+        <ImpactFlash key={at} atSec={at} peak={0.1} />
+      ))}
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', gap: 170 }}>
         <SceneHeading frame={frame} fps={fps}>
           a malicious dependency can strike{' '}

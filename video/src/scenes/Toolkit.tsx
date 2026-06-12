@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill } from 'remotion';
 import { useClock } from '../components/anim';
+import { ImpactFlash } from '../components/Effects';
 import { SceneShell } from '../components/SceneShell';
 import { colors } from '../theme';
 import { Pipeline, SceneHeading } from './Pipeline';
@@ -21,10 +22,15 @@ const Check: React.FC<{ progress: number }> = ({ progress }) => (
   </svg>
 );
 
+const BEATS = [2.7, 5.6, 8.1];
+
 export const Toolkit: React.FC = () => {
   const { frame, fps } = useClock();
   return (
     <SceneShell id="toolkit">
+      {BEATS.map((at) => (
+        <ImpactFlash key={at} atSec={at} color={colors.green} peak={0.08} />
+      ))}
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', gap: 80 }}>
         <SceneHeading frame={frame} fps={fps}>
           adopt it <span style={{ color: colors.green }}>one step at a time</span>
@@ -37,21 +43,21 @@ export const Toolkit: React.FC = () => {
             {
               icon: 'tree',
               label: 'install',
-              activeAt: 3.2,
+              activeAt: BEATS[0],
               sub: '@lavamoat/allow-scripts',
               subColor: colors.green,
             },
             {
               icon: 'cogs',
               label: 'build',
-              activeAt: 7.2,
+              activeAt: BEATS[1],
               sub: 'lavamoat-node',
               subColor: colors.green,
             },
             {
               icon: 'users',
               label: 'runtime',
-              activeAt: 10.2,
+              activeAt: BEATS[2],
               sub: '@lavamoat/webpack · browserify',
               subColor: colors.green,
             },

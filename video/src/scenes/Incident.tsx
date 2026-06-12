@@ -1,22 +1,25 @@
 import React from 'react';
 import { AbsoluteFill, Img, staticFile } from 'remotion';
 import { fadeAt, springAt, useClock } from '../components/anim';
+import { ImpactFlash } from '../components/Effects';
 import { SceneShell } from '../components/SceneShell';
 import { colors, fonts } from '../theme';
 
 // Real headlines from the 2018 event-stream / Copay incident
 // (screenshots reused from the Devcon 6 talk repo)
 const CARDS = [
-  { src: 'assets/event-stream-article-2.png', rot: -5, x: -560, y: 30, w: 600, at: 1.6 },
-  { src: 'assets/event-stream-article-0.png', rot: 3, x: -185, y: -30, w: 600, at: 2.6 },
-  { src: 'assets/event-stream-article-1.png', rot: -2, x: 190, y: 40, w: 600, at: 3.6 },
-  { src: 'assets/npm-event-stream.png', rot: 4, x: 545, y: -20, w: 600, at: 4.6 },
+  { src: 'assets/event-stream-article-2.png', rot: -5, x: -560, y: 30, w: 600, at: 1.7 },
+  { src: 'assets/event-stream-article-0.png', rot: 3, x: -185, y: -30, w: 600, at: 2.5 },
+  { src: 'assets/event-stream-article-1.png', rot: -2, x: 190, y: 40, w: 600, at: 3.4 },
+  { src: 'assets/npm-event-stream.png', rot: 4, x: 545, y: -20, w: 600, at: 4.2 },
 ];
+const BANNER_AT = 8.7;
 
 export const Incident: React.FC = () => {
-  const { frame, fps } = useClock();
+  const { frame, fps, sec } = useClock();
   return (
-    <SceneShell id="incident">
+    <SceneShell id="incident" shakes={[{ at: BANNER_AT, amp: 11 }]}>
+      <ImpactFlash atSec={BANNER_AT} peak={0.18} />
       <AbsoluteFill
         style={{
           background: `radial-gradient(ellipse at 50% 0%, rgba(236,39,58,0.16), transparent 60%)`,
@@ -47,8 +50,9 @@ export const Incident: React.FC = () => {
             marginTop: 60,
           }}
         >
-          {CARDS.map((c) => {
+          {CARDS.map((c, ci) => {
             const s = springAt(frame, fps, c.at, { damping: 15 });
+            const drift = Math.sin(sec * 0.9 + ci * 1.8) * 0.7;
             return (
               <div
                 key={c.src}
@@ -56,7 +60,7 @@ export const Incident: React.FC = () => {
                   position: 'absolute',
                   left: `calc(50% + ${c.x}px)`,
                   top: `calc(50% + ${c.y}px)`,
-                  transform: `translate(-50%, -50%) rotate(${c.rot}deg) scale(${s})`,
+                  transform: `translate(-50%, -50%) rotate(${c.rot + drift}deg) scale(${s})`,
                   opacity: s,
                   borderRadius: 10,
                   overflow: 'hidden',
@@ -79,8 +83,8 @@ export const Incident: React.FC = () => {
             fontFamily: fonts.heading,
             fontSize: 42,
             fontWeight: 700,
-            opacity: fadeAt(frame, fps, 9.5, 0.6),
-            transform: `translateY(${(1 - springAt(frame, fps, 9.5, { damping: 18 })) * 40}px)`,
+            opacity: fadeAt(frame, fps, BANNER_AT, 0.3),
+            transform: `translateY(${(1 - springAt(frame, fps, BANNER_AT, { damping: 12 })) * 60}px)`,
           }}
         >
           shipped in official releases — stole users&apos; private keys

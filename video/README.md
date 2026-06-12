@@ -35,17 +35,21 @@ rendering works out of the box.
 ## Regenerating narration / music
 
 Narration is synthesized locally with [Piper TTS](https://github.com/OHF-Voice/piper1-gpl)
-(voice: `en_US-lessac-medium`), and the ambient music bed is procedurally
-generated. To tweak the script (edit text in `scripts/build-narration.mjs`):
+(voice: `en_GB-alba-medium`, Scottish English "Alba"), and the music bed (pad + kick + bass + arpeggio,
+104 BPM) is procedurally generated with numpy. To tweak the script (edit text
+in `scripts/build-narration.mjs`):
 
 ```sh
-pip install piper-tts
-python3 -m piper.download_voices en_US-lessac-medium   # run inside voices/
+pip install piper-tts numpy
+python3 -m piper.download_voices en_GB-alba-medium   # run inside voices/
 npm run narration       # rebuilds public/audio/*.mp3 + src/timing.json
 npm run music           # rebuilds public/audio/music.mp3
 ```
 
 `ffmpeg` is required (audio encoding + duration probing).
+
+Note: piper's `--sentence-silence` flag is deliberately avoided — some builds
+fill the inserted silence with uninitialized memory, i.e. loud static bursts.
 
 ## Credits
 

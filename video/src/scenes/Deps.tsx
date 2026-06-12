@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { AbsoluteFill, interpolate } from 'remotion';
 import { fadeAt, mulberry32, springAt, useClock } from '../components/anim';
 import { Code } from '../components/Code';
+import { ImpactFlash } from '../components/Effects';
 import { SceneShell } from '../components/SceneShell';
 import { colors, fonts } from '../theme';
 
@@ -20,10 +21,11 @@ type Node = { x: number; y: number; r: number; appearSec: number; parent: number
 
 // rings appear in waves: direct deps, their deps, transitive explosion
 const RINGS = [
-  { count: 6, radius: 150, jitter: 16, size: 17, start: 2.6, span: 1.2 },
-  { count: 26, radius: 280, jitter: 30, size: 12, start: 5.2, span: 1.6 },
-  { count: 90, radius: 415, jitter: 48, size: 8, start: 7.4, span: 2.4 },
+  { count: 6, radius: 150, jitter: 16, size: 17, start: 3.7, span: 1.0 },
+  { count: 26, radius: 280, jitter: 30, size: 12, start: 5.5, span: 1.2 },
+  { count: 90, radius: 415, jitter: 48, size: 8, start: 7.0, span: 1.8 },
 ];
+const DANGER_AT = 8.6;
 
 const buildGraph = () => {
   const rand = mulberry32(1337);
@@ -52,7 +54,7 @@ export const Deps: React.FC = () => {
   const { frame, fps, sec } = useClock();
   const nodes = useMemo(buildGraph, []);
   const visibleCount = nodes.filter((n) => sec >= n.appearSec).length;
-  const danger = fadeAt(frame, fps, 12.2, 0.8);
+  const danger = fadeAt(frame, fps, DANGER_AT, 0.8);
   const nodeColor = (i: number) =>
     i === 0
       ? colors.cyan
@@ -60,7 +62,8 @@ export const Deps: React.FC = () => {
         ? colors.red
         : '#9aa1ab';
   return (
-    <SceneShell id="deps">
+    <SceneShell id="deps" shakes={[{ at: DANGER_AT, amp: 8 }]}>
+      <ImpactFlash atSec={DANGER_AT} peak={0.14} />
       <AbsoluteFill style={{ flexDirection: 'row', alignItems: 'center' }}>
         <div style={{ width: 760, paddingLeft: 90 }}>
           <div
@@ -153,7 +156,7 @@ export const Deps: React.FC = () => {
               fontFamily: fonts.mono,
               fontSize: 34,
               color: colors.cyan,
-              opacity: fadeAt(frame, fps, 2.8, 0.5),
+              opacity: fadeAt(frame, fps, 3.7, 0.5),
             }}
           >
             node_modules:{' '}

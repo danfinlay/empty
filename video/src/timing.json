@@ -2,61 +2,61 @@
   "title": {
     "audio": "audio/title.mp3",
     "lead": 0.4,
-    "audioSec": 6.536417,
-    "durationSec": 7.736417
+    "audioSec": 6.60898,
+    "durationSec": 7.80898
   },
   "deps": {
     "audio": "audio/deps.mp3",
     "lead": 0.5,
-    "audioSec": 15.11941,
-    "durationSec": 16.51941
+    "audioSec": 12.277551,
+    "durationSec": 13.677551000000001
   },
   "incident": {
     "audio": "audio/incident.mp3",
     "lead": 0.5,
-    "audioSec": 15.261542,
-    "durationSec": 16.661542
+    "audioSec": 13.113469,
+    "durationSec": 14.513469
   },
   "stages": {
     "audio": "audio/stages.mp3",
     "lead": 0.5,
-    "audioSec": 12.936735,
-    "durationSec": 14.336735000000001
+    "audioSec": 12.382041,
+    "durationSec": 13.782041
   },
   "mutable": {
     "audio": "audio/mutable.mp3",
     "lead": 0.5,
-    "audioSec": 10.675601,
-    "durationSec": 12.075601
+    "audioSec": 11.075918,
+    "durationSec": 12.475918
   },
   "ambient": {
     "audio": "audio/ambient.mp3",
     "lead": 0.5,
-    "audioSec": 12.730567,
-    "durationSec": 14.130567000000001
+    "audioSec": 13.479184,
+    "durationSec": 14.879184
   },
   "hardened": {
     "audio": "audio/hardened.mp3",
     "lead": 0.5,
-    "audioSec": 14.367574,
-    "durationSec": 15.767574
+    "audioSec": 14.550204,
+    "durationSec": 15.950204000000001
   },
   "policy": {
     "audio": "audio/policy.mp3",
     "lead": 0.5,
-    "audioSec": 15.403628,
-    "durationSec": 16.803628
+    "audioSec": 16.274286,
+    "durationSec": 17.674286
   },
   "toolkit": {
     "audio": "audio/toolkit.mp3",
     "lead": 0.5,
-    "audioSec": 13.714603,
-    "durationSec": 15.114603
+    "audioSec": 10.579592,
+    "durationSec": 11.979592
   },
   "outro": {
     "audio": "audio/outro.mp3",
     "lead": 0.5,
-    "audioSec": 13.299456,
-    "durationSec": 15.399455999999999
+    "audioSec": 12.434286,
+    "durationSec": 14.534286
   }
 }

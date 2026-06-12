@@ -44,6 +44,23 @@ export const riseAt = (
   };
 };
 
+// Decaying impact shake; returns a pixel offset. Frame-deterministic.
+export const shakeAt = (
+  frame: number,
+  fps: number,
+  atSec: number,
+  amp = 12,
+  durSec = 0.55,
+) => {
+  const t = frame / fps - atSec;
+  if (t < 0 || t > durSec) return { x: 0, y: 0 };
+  const decay = (1 - t / durSec) ** 2;
+  return {
+    x: amp * decay * (Math.sin(t * 89) * 0.6 + Math.sin(t * 157) * 0.4),
+    y: amp * decay * (Math.cos(t * 101) * 0.6 + Math.sin(t * 173) * 0.4),
+  };
+};
+
 // Deterministic PRNG for layouts
 export const mulberry32 = (seed: number) => {
   let a = seed >>> 0;

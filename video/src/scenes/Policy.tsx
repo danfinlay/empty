@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill } from 'remotion';
 import { fadeAt, springAt, useClock } from '../components/anim';
 import { Code } from '../components/Code';
+import { ImpactFlash } from '../components/Effects';
 import { SceneShell } from '../components/SceneShell';
 import { colors, fonts } from '../theme';
 import { SceneHeading } from './Pipeline';
@@ -31,17 +32,19 @@ $ lavamoat app.js   # enforced
 `;
 
 const COMPARTMENTS = [
-  { label: 'my-app', at: 1.2 },
-  { label: 'pkg: abc', at: 1.7 },
-  { label: 'pkg: xyz', at: 2.2 },
+  { label: 'my-app', at: 1.9 },
+  { label: 'pkg: abc', at: 2.5 },
+  { label: 'pkg: xyz', at: 3.1 },
 ];
+const KERNEL_AT = 3.7;
 
 export const Policy: React.FC = () => {
   const { frame, fps } = useClock();
-  const kernelIn = springAt(frame, fps, 2.8, { damping: 16 });
-  const cliIn = springAt(frame, fps, 11.2, { damping: 16 });
+  const kernelIn = springAt(frame, fps, KERNEL_AT, { damping: 16 });
+  const cliIn = springAt(frame, fps, 12.4, { damping: 14 });
   return (
-    <SceneShell id="policy">
+    <SceneShell id="policy" shakes={[{ at: KERNEL_AT, amp: 6 }]}>
+      <ImpactFlash atSec={KERNEL_AT} color={colors.lavaBottom} peak={0.12} />
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', gap: 48 }}>
         <SceneHeading frame={frame} fps={fps}>
           LavaMoat wraps every package{' '}
@@ -150,18 +153,18 @@ export const Policy: React.FC = () => {
                 code={CLI}
                 title="policy is generated automatically"
                 fontSize={27}
-                typeStartSec={11.5}
+                typeStartSec={12.7}
                 typeDurSec={2.2}
                 accent={colors.green}
               />
             </div>
           </div>
-          <div style={{ opacity: fadeAt(frame, fps, 4.2, 0.5), width: 720 }}>
+          <div style={{ opacity: fadeAt(frame, fps, 5.2, 0.5), width: 720 }}>
             <Code
               code={POLICY_JSON}
               title="lavamoat/policy.json — per-package permissions"
               fontSize={27}
-              typeStartSec={4.4}
+              typeStartSec={5.4}
               typeDurSec={4.6}
             />
           </div>

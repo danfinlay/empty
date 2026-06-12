@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill } from 'remotion';
 import { fadeAt, springAt, useClock } from '../components/anim';
 import { Code } from '../components/Code';
+import { ImpactFlash } from '../components/Effects';
 import { SceneShell } from '../components/SceneShell';
 import { colors, fonts } from '../theme';
 import { SceneHeading } from './Pipeline';
@@ -26,12 +27,15 @@ module.exports = function normalizeUnicode (string) {
 }
 `;
 
+const SWAP_AT = 6.8;
+
 export const Ambient: React.FC = () => {
   const { frame, fps } = useClock();
-  const swap = springAt(frame, fps, 4.8, { damping: 18 });
-  const caption = springAt(frame, fps, 10.6, { damping: 16 });
+  const swap = springAt(frame, fps, SWAP_AT, { damping: 14 });
+  const caption = springAt(frame, fps, 10.8, { damping: 16 });
   return (
-    <SceneShell id="ambient">
+    <SceneShell id="ambient" shakes={[{ at: SWAP_AT, amp: 8 }]}>
+      <ImpactFlash atSec={SWAP_AT} peak={0.14} />
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', gap: 48 }}>
         <SceneHeading frame={frame} fps={fps} color={colors.red} at={0.4}>
           #2 — ambient authority
@@ -50,8 +54,8 @@ export const Ambient: React.FC = () => {
               code={INNOCENT}
               title="node_modules/normalize-unicode/index.js"
               fontSize={30}
-              typeStartSec={1.4}
-              typeDurSec={2}
+              typeStartSec={1.8}
+              typeDurSec={1.8}
               width={1060}
             />
           </div>
@@ -68,8 +72,8 @@ export const Ambient: React.FC = () => {
               code={EVIL}
               title="...after a malicious update"
               fontSize={30}
-              typeStartSec={5.2}
-              typeDurSec={3.2}
+              typeStartSec={7.0}
+              typeDurSec={2.6}
               width={1000}
               accent={colors.red}
               lineHighlights={{

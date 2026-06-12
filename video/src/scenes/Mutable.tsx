@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill } from 'remotion';
 import { fadeAt, springAt, useClock } from '../components/anim';
 import { Code } from '../components/Code';
+import { ImpactFlash } from '../components/Effects';
 import { SceneShell } from '../components/SceneShell';
 import { colors, fonts } from '../theme';
 import { SceneHeading } from './Pipeline';
@@ -16,11 +17,14 @@ const IMPACT = `
 ['user', 'data'].map(render)   // hijacked!
 `;
 
+const IMPACT_AT = 8.5;
+
 export const Mutable: React.FC = () => {
   const { frame, fps } = useClock();
-  const impactIn = springAt(frame, fps, 7.6, { damping: 16 });
+  const impactIn = springAt(frame, fps, IMPACT_AT, { damping: 12 });
   return (
-    <SceneShell id="mutable">
+    <SceneShell id="mutable" shakes={[{ at: IMPACT_AT, amp: 13 }]}>
+      <ImpactFlash atSec={IMPACT_AT} peak={0.22} />
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', gap: 56 }}>
         <div
           style={{
@@ -33,11 +37,11 @@ export const Mutable: React.FC = () => {
         >
           why is JavaScript such an easy target?
         </div>
-        <SceneHeading frame={frame} fps={fps} color={colors.red} at={1.6}>
+        <SceneHeading frame={frame} fps={fps} color={colors.red} at={3.1}>
           #1 — everything is mutable
         </SceneHeading>
-        <div style={{ opacity: fadeAt(frame, fps, 2.6, 0.4) }}>
-          <Code code={ATTACK} fontSize={40} typeStartSec={2.8} typeDurSec={2.4} width={1240} />
+        <div style={{ opacity: fadeAt(frame, fps, 4.8, 0.4) }}>
+          <Code code={ATTACK} fontSize={40} typeStartSec={5.0} typeDurSec={2.2} width={1240} />
         </div>
         <div
           style={{
@@ -48,7 +52,7 @@ export const Mutable: React.FC = () => {
           <Code
             code={IMPACT}
             fontSize={40}
-            typeStartSec={7.8}
+            typeStartSec={8.7}
             typeDurSec={1.4}
             width={1240}
             accent={colors.red}
