@@ -12,9 +12,12 @@ event-stream headline screenshots.
 2. **Your app, on npm** — a few deps explode into 1,000+ transitive packages
 3. **2018 event-stream incident** — malicious code shipped inside the Copay wallet
 4. **Attack surface** — install (lifecycle scripts) → build (tooling) → runtime
-5. **Why JS is easy to attack #1** — everything is mutable (`Array.prototype.map = ...`)
+5. **Why is JS such an easy target?** — flexibility: it makes JavaScript vulnerable
+   *and* is what lets us make it safe (the thesis, stated up front); then
+   #1 — everything is mutable (`Array.prototype.map = ...`)
 6. **#2 — ambient authority** — any package can `fetch(process.env)` unnoticed
-7. **The foundation** — Hardened JavaScript (SES): `lockdown()` + `Compartment`
+7. **The foundation** — Hardened JavaScript (SES): that same flexibility turned
+   into defense — `lockdown()` + `Compartment`
 8. **How LavaMoat works** — every package in its own compartment, enforced by an
    auto-generated `policy.json`
 9. **Adopt incrementally** — `@lavamoat/allow-scripts`, `lavamoat-node`, bundler plugins
