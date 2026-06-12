@@ -25,9 +25,32 @@ event-stream headline screenshots.
 ## Rendering
 
 ```sh
+git clone -b claude/compassionate-knuth-icaby0 git@github.com:kumavis/empty.git
+cd empty/video
 npm install
-npm run render          # writes out/lavamoat-explainer.mp4
+npm run render          # writes out/lavamoat-explainer.mp4 (1080p30, CRF 18)
 npm run studio          # live-preview / edit the composition
+```
+
+Narration audio and `src/timing.json` are checked in, so rendering needs only
+Node — no TTS setup. Remotion downloads its own headless Chromium on first run.
+
+### Higher-quality renders
+
+The committed `lavamoat-explainer.mp4` at the repo root is a CRF 22 re-encode
+to keep the repo small. The scenes are all vector/DOM, so they upscale
+losslessly:
+
+```sh
+# near-lossless 1080p
+npx remotion render src/index.ts LavaMoatExplainer out/hq.mp4 --crf 10
+
+# 4K (3840x2160)
+npx remotion render src/index.ts LavaMoatExplainer out/4k.mp4 --scale 2 --crf 14
+
+# ProRes 4444 editing master
+npx remotion render src/index.ts LavaMoatExplainer out/master.mov \
+  --codec prores --prores-profile 4444
 ```
 
 Scene durations are driven by the narration audio: `src/timing.json` maps each
