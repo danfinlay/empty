@@ -13,9 +13,14 @@ event-stream headline screenshots.
 3. **2018 event-stream incident** — malicious code shipped inside the Copay wallet
 4. **Attack timeline, 2018 → 2026** — the attacks accelerated: ua-parser-js (2021),
    node-ipc & colors sabotage (2022), Ledger connect-kit drainer (2023),
-   web3.js & lottie-player (2024), the chalk & debug takeover (2B weekly
+   web3.js & lottie-player (2024), the chalk & debug takeover (2.6B weekly
    downloads) and the self-replicating Shai-Hulud worm (~800 packages,
-   25k+ repos across two waves, 2025), axios / node-ipc / Red Hat (2026)
+   25k+ repos across two waves, 2025), axios / node-ipc / Red Hat (2026) —
+   plus the financial impact: the chalk & debug attackers' realized haul was
+   roughly five cents (per the Security Alliance / SEAL report "Oops, No
+   Victims"), while surviving an attack still costs real money — the average
+   supply-chain/third-party breach runs $4.91M and takes 267 days to resolve
+   (IBM Cost of a Data Breach Report, 2025)
 5. **Attack surface** — install (lifecycle scripts) → build (tooling) → runtime
 6. **Why is JS such an easy target?** — flexibility: it makes JavaScript vulnerable
    *and* is what lets us make it safe (the thesis, stated up front); then

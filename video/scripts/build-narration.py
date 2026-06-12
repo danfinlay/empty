@@ -50,7 +50,7 @@ SCENES = [
         "id": "timeline",
         "lead": 0.5,
         "tail": 0.9,
-        "text": "And it never stopped. Year after year, popular packages kept getting hijacked. Then twenty twenty-five broke every record. Chalk and debug: hijacked, two billion weekly downloads. And Shai-Hulud: the first self-replicating n p m worm, backdooring nearly eight hundred packages across two waves. Twenty twenty-six? Still accelerating. It's no longer a question of if. Only when.",
+        "text": "And it never stopped. Year after year, popular packages kept getting hijacked — and the cleanup bills kept growing. Then twenty twenty-five broke every record. Chalk and debug: hijacked, two point six billion weekly downloads. And the thieves' total haul: about five cents. Surviving an attack still isn't free: the average supply chain breach costs nearly five million dollars, and takes nine months to clean up. And Shai-Hulud: the first self-replicating n p m worm, backdooring nearly eight hundred packages across two waves. Twenty twenty-six? Still accelerating. It's no longer a question of if. Only when.",
     },
     {
         "id": "stages",

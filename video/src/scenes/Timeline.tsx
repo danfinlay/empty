@@ -9,12 +9,16 @@ import { SceneHeading } from './Pipeline';
 
 // Beats come from the narration's per-sentence marks:
 // 0 "And it never stopped."
-// 1 "Year after year, popular packages kept getting hijacked."
+// 1 "Year after year, popular packages kept getting hijacked — and the
+//    cleanup bills kept growing."
 // 2 "Then twenty twenty-five broke every record."
-// 3 "Chalk and debug: hijacked, two billion weekly downloads."
-// 4 "And Shai-Hulud: the first self-replicating npm worm..."
-// 5 "Twenty twenty-six?"  6 "Still accelerating."
-// 7 "It's no longer a question of if."  8 "Only when."
+// 3 "Chalk and debug: hijacked, two point six billion weekly downloads."
+// 4 "And the thieves' total haul: about five cents."
+// 5 "Surviving an attack still isn't free: the average supply chain breach
+//    costs nearly five million dollars, and takes nine months to clean up."
+// 6 "And Shai-Hulud: the first self-replicating npm worm..."
+// 7 "Twenty twenty-six?"  8 "Still accelerating."
+// 9 "It's no longer a question of if."  10 "Only when."
 const M = (timing.timeline.marks as number[]).map(
   (m) => m + timing.timeline.lead,
 );
@@ -32,30 +36,33 @@ type Card = {
   at: number;
   up: boolean; // card sits above the axis
   big?: boolean;
+  money?: string; // realized financial damage (amber line)
+  moneyAt?: number; // when the money line lands (defaults to `at`)
 };
 
 // Major npm supply chain attacks, 2018 -> 2026 (see video/README.md for sources)
 const CARDS: Card[] = [
   { year: '2018', x: yearX(2018), name: 'event-stream', sub: 'wallet keys stolen', at: M[0] + 0.4, up: true },
   { year: '2021', x: yearX(2021), name: 'ua-parser-js', sub: 'malware · 8M dl/wk', at: M[1] + 0.4, up: false },
-  { year: '2022', x: yearX(2022), name: 'node-ipc · colors', sub: 'maintainer sabotage', at: M[1] + 1.3, up: true },
-  { year: '2023', x: yearX(2023), name: 'Ledger connect-kit', sub: 'wallet drainer', at: M[1] + 2.2, up: false },
-  { year: '2024', x: yearX(2024), name: 'solana/web3.js', sub: 'lottie-player · key stealers', at: M[1] + 3.1, up: true },
-  { year: '2025', x: yearX(2024.95), name: 'chalk & debug', sub: '2B dl/wk hijacked', at: M[3], up: false },
-  { year: '2025', x: yearX(2025.55), name: 'Shai-Hulud worm', sub: 'self-replicating · ~800 pkgs · 25k+ repos', at: M[4], up: true, big: true },
-  { year: '2026', x: yearX(2026.25), name: 'axios · node-ipc', sub: 'Red Hat ...and counting', at: M[5], up: false },
+  { year: '2022', x: yearX(2022), name: 'node-ipc · colors', sub: 'maintainer sabotage', at: M[1] + 1.6, up: true },
+  { year: '2023', x: yearX(2023), name: 'Ledger connect-kit', sub: 'wallet drainer', at: M[1] + 2.8, up: false },
+  { year: '2024', x: yearX(2024), name: 'solana/web3.js', sub: 'lottie-player · key stealers', at: M[1] + 4.0, up: true },
+  { year: '2025', x: yearX(2024.95), name: 'chalk & debug', sub: '2.6B dl/wk hijacked', at: M[3], up: false, money: 'stolen: ~5¢', moneyAt: M[4] },
+  { year: '2025', x: yearX(2025.55), name: 'Shai-Hulud worm', sub: 'self-replicating · ~800 pkgs · 25k+ repos', at: M[6], up: true, big: true },
+  { year: '2026', x: yearX(2026.25), name: 'axios · node-ipc', sub: 'Red Hat ...and counting', at: M[7], up: false },
 ];
 
 export const Timeline: React.FC = () => {
   const { frame, fps, sec } = useClock();
   const axisIn = springAt(frame, fps, 0.3, { damping: 30 });
-  const finale = fadeAt(frame, fps, M[7], 0.5);
+  const finale = fadeAt(frame, fps, M[9], 0.5);
+  const costIn = springAt(frame, fps, M[5] + 0.3, { damping: 16 });
   // axis reddens from left to right as the years go by
   const redSweep = fadeAt(frame, fps, M[2], 3.5);
   return (
-    <SceneShell id="timeline" shakes={[{ at: M[4], amp: 10 }]}>
-      <ImpactFlash atSec={M[4]} peak={0.2} />
-      <ImpactFlash atSec={M[7]} peak={0.12} />
+    <SceneShell id="timeline" shakes={[{ at: M[6], amp: 10 }]}>
+      <ImpactFlash atSec={M[6]} peak={0.2} />
+      <ImpactFlash atSec={M[9]} peak={0.12} />
       <AbsoluteFill>
         <div style={{ marginTop: 90 }}>
           <SceneHeading frame={frame} fps={fps}>
@@ -153,9 +160,52 @@ export const Timeline: React.FC = () => {
               >
                 {c.sub}
               </div>
+              {c.money ? (
+                <div
+                  style={{
+                    fontFamily: fonts.mono,
+                    fontWeight: 700,
+                    fontSize: 21,
+                    color: colors.lavaBottom,
+                    opacity: springAt(frame, fps, c.moneyAt ?? c.at, { damping: 13 }),
+                  }}
+                >
+                  {c.money}
+                </div>
+              ) : null}
             </div>
           );
         })}
+        <div
+          style={{
+            position: 'absolute',
+            top: 255,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            opacity: costIn,
+            transform: `translateY(${(1 - costIn) * 30}px)`,
+          }}
+        >
+          <div
+            style={{
+              background: colors.panel,
+              border: `2.5px solid ${colors.lavaBottom}`,
+              borderRadius: 14,
+              padding: '16px 34px',
+              fontFamily: fonts.heading,
+              fontWeight: 700,
+              fontSize: 30,
+              color: colors.gray,
+              boxShadow: '0 12px 30px rgba(0,0,0,0.4)',
+            }}
+          >
+            average breach:{' '}
+            <span style={{ color: colors.lavaBottom, fontWeight: 800 }}>$4.91M</span> ·{' '}
+            <span style={{ color: colors.lavaBottom, fontWeight: 800 }}>267 days</span> to resolve{' '}
+            <span style={{ color: colors.dim, fontWeight: 600, fontSize: 22 }}>(IBM, 2025)</span>
+          </div>
+        </div>
         <div
           style={{
             position: 'absolute',
