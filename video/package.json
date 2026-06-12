@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Remotion explainer video for LavaMoat",
   "scripts": {
-    "narration": "node scripts/build-narration.mjs",
-    "music": "python3 scripts/build-music.py",
+    "narration": "python3 scripts/build-narration.py",
     "studio": "remotion studio src/index.ts",
     "render": "remotion render src/index.ts LavaMoatExplainer out/lavamoat-explainer.mp4",
     "still": "remotion still src/index.ts LavaMoatExplainer",

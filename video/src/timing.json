@@ -2,61 +2,125 @@
   "title": {
     "audio": "audio/title.mp3",
     "lead": 0.4,
-    "audioSec": 6.60898,
-    "durationSec": 7.80898
+    "audioSec": 6.687,
+    "durationSec": 7.887,
+    "marks": [
+      0.0,
+      5.443
+    ]
   },
   "deps": {
     "audio": "audio/deps.mp3",
     "lead": 0.5,
-    "audioSec": 12.277551,
-    "durationSec": 13.677551000000001
+    "audioSec": 12.591,
+    "durationSec": 13.991,
+    "marks": [
+      0.0,
+      3.411,
+      5.499,
+      7.657
+    ]
   },
   "incident": {
     "audio": "audio/incident.mp3",
     "lead": 0.5,
-    "audioSec": 13.113469,
-    "durationSec": 14.513469
+    "audioSec": 13.322,
+    "durationSec": 14.722,
+    "marks": [
+      0.0,
+      2.216,
+      8.39
+    ]
   },
   "stages": {
     "audio": "audio/stages.mp3",
     "lead": 0.5,
-    "audioSec": 12.382041,
-    "durationSec": 13.782041
+    "audioSec": 13.244,
+    "durationSec": 14.644,
+    "marks": [
+      0.0,
+      3.411,
+      7.659,
+      10.339
+    ]
   },
   "mutable": {
     "audio": "audio/mutable.mp3",
     "lead": 0.5,
-    "audioSec": 11.075918,
-    "durationSec": 12.475918
+    "audioSec": 12.121,
+    "durationSec": 13.521,
+    "marks": [
+      0.0,
+      3.179,
+      5.534
+    ]
   },
   "ambient": {
     "audio": "audio/ambient.mp3",
     "lead": 0.5,
-    "audioSec": 13.479184,
-    "durationSec": 14.879184
+    "audioSec": 13.401,
+    "durationSec": 14.801,
+    "marks": [
+      0.0,
+      2.309,
+      6.626
+    ]
   },
   "hardened": {
     "audio": "audio/hardened.mp3",
     "lead": 0.5,
-    "audioSec": 14.550204,
-    "durationSec": 15.950204000000001
+    "audioSec": 15.177,
+    "durationSec": 16.577,
+    "marks": [
+      0.0,
+      1.426,
+      4.083,
+      8.864,
+      12.671
+    ]
   },
   "policy": {
     "audio": "audio/policy.mp3",
     "lead": 0.5,
-    "audioSec": 16.274286,
-    "durationSec": 17.674286
+    "audioSec": 16.849,
+    "durationSec": 18.249,
+    "marks": [
+      0.0,
+      1.298,
+      11.351,
+      14.077,
+      15.515
+    ]
   },
   "toolkit": {
     "audio": "audio/toolkit.mp3",
     "lead": 0.5,
-    "audioSec": 10.579592,
-    "durationSec": 11.979592
+    "audioSec": 11.781,
+    "durationSec": 13.181,
+    "marks": [
+      0.0,
+      2.134,
+      5.198,
+      7.715
+    ]
   },
   "outro": {
     "audio": "audio/outro.mp3",
     "lead": 0.5,
-    "audioSec": 12.434286,
-    "durationSec": 14.534286
+    "audioSec": 24.294,
+    "durationSec": 26.794,
+    "marks": [
+      0.0,
+      5.919,
+      6.939,
+      8.969,
+      9.989,
+      12.065,
+      13.004,
+      15.602,
+      16.599,
+      19.047,
+      21.39
+    ]
   }
 }

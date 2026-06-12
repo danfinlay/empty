@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, Audio, Series, staticFile, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Series, useVideoConfig } from 'remotion';
 import timing from './timing.json';
 import { colors } from './theme';
 import { Title } from './scenes/Title';
@@ -31,7 +31,6 @@ export const Main: React.FC = () => {
   const { fps } = useVideoConfig();
   return (
     <AbsoluteFill style={{ background: colors.bg }}>
-      <Audio src={staticFile('audio/music.mp3')} volume={0.2} />
       <Series>
         {SCENES.map(([id, Component]) => (
           <Series.Sequence key={id} durationInFrames={sceneDurationInFrames(id, fps)}>

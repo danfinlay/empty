@@ -32,16 +32,16 @@ $ lavamoat app.js   # enforced
 `;
 
 const COMPARTMENTS = [
-  { label: 'my-app', at: 1.9 },
+  { label: 'my-app', at: 2.0 },
   { label: 'pkg: abc', at: 2.5 },
-  { label: 'pkg: xyz', at: 3.1 },
+  { label: 'pkg: xyz', at: 3.0 },
 ];
-const KERNEL_AT = 3.7;
+const KERNEL_AT = 3.5;
 
 export const Policy: React.FC = () => {
   const { frame, fps } = useClock();
   const kernelIn = springAt(frame, fps, KERNEL_AT, { damping: 16 });
-  const cliIn = springAt(frame, fps, 12.4, { damping: 14 });
+  const cliIn = springAt(frame, fps, 12.0, { damping: 14 });
   return (
     <SceneShell id="policy" shakes={[{ at: KERNEL_AT, amp: 6 }]}>
       <ImpactFlash atSec={KERNEL_AT} color={colors.lavaBottom} peak={0.12} />
@@ -153,7 +153,7 @@ export const Policy: React.FC = () => {
                 code={CLI}
                 title="policy is generated automatically"
                 fontSize={27}
-                typeStartSec={12.7}
+                typeStartSec={12.3}
                 typeDurSec={2.2}
                 accent={colors.green}
               />
@@ -165,7 +165,7 @@ export const Policy: React.FC = () => {
               title="lavamoat/policy.json — per-package permissions"
               fontSize={27}
               typeStartSec={5.4}
-              typeDurSec={4.6}
+              typeDurSec={4.8}
             />
           </div>
         </div>

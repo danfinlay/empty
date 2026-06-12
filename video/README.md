@@ -18,7 +18,9 @@ event-stream headline screenshots.
 8. **How LavaMoat works** — every package in its own compartment, enforced by an
    auto-generated `policy.json`
 9. **Adopt incrementally** — `@lavamoat/allow-scripts`, `lavamoat-node`, bundler plugins
-10. **Outro** — battle-tested at MetaMask; github.com/LavaMoat/LavaMoat
+10. **Outro** — battle-tested at MetaMask; "Never use dependencies? Nah. Audit all of
+    node_modules? Nah. LavaMoat? Yeah." (from the MetaMask LavaMoat blog post);
+    github.com/LavaMoat/LavaMoat
 
 ## Rendering
 
@@ -29,27 +31,29 @@ npm run studio          # live-preview / edit the composition
 ```
 
 Scene durations are driven by the narration audio: `src/timing.json` maps each
-scene to its clip length and is checked in along with the generated audio, so
-rendering works out of the box.
+scene to its clip length plus per-sentence start times (`marks`), and is
+checked in along with the generated audio, so rendering works out of the box.
+Scenes use the marks (or constants derived from them) to sync animation beats
+to the narration.
 
-## Regenerating narration / music
+## Regenerating narration
 
 Narration is synthesized locally with [Piper TTS](https://github.com/OHF-Voice/piper1-gpl)
-(voice: `en_GB-alba-medium`, Scottish English "Alba"), and the music bed (pad + kick + bass + arpeggio,
-104 BPM) is procedurally generated with numpy. To tweak the script (edit text
-in `scripts/build-narration.mjs`):
+(voice: `en_GB-cori-high`). Each sentence is synthesized separately and joined
+with explicit silence — this yields the per-sentence `marks` and sidesteps
+piper's `--sentence-silence` flag, which in some builds fills the inserted
+silence with uninitialized memory (loud static bursts). To tweak the script,
+edit the texts in `scripts/build-narration.py`, then:
 
 ```sh
-pip install piper-tts numpy
-python3 -m piper.download_voices en_GB-alba-medium   # run inside voices/
+pip install piper-tts numpy soundfile
+mkdir -p voices && cd voices && python3 -m piper.download_voices en_GB-cori-high && cd ..
 npm run narration       # rebuilds public/audio/*.mp3 + src/timing.json
-npm run music           # rebuilds public/audio/music.mp3
 ```
 
-`ffmpeg` is required (audio encoding + duration probing).
-
-Note: piper's `--sentence-silence` flag is deliberately avoided — some builds
-fill the inserted silence with uninitialized memory, i.e. loud static bursts.
+`ffmpeg` is required (audio encoding + duration probing). If you change the
+text, re-check the hardcoded beat constants in `src/scenes/*` against the
+printed marks (the Outro reads its marks from timing.json directly).
 
 ## Credits
 

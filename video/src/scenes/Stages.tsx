@@ -9,7 +9,7 @@ import { Pipeline, SceneHeading } from './Pipeline';
 
 // horizontal offsets of the three stage boxes within the pipeline layout
 const STAGE_X = [-442, 0, 442];
-const BEATS = [3.7, 7.2, 9.6];
+const BEATS = [4.0, 8.3, 10.9];
 
 export const Stages: React.FC = () => {
   const { frame, fps } = useClock();

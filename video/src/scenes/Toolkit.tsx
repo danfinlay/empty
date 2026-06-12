@@ -22,7 +22,7 @@ const Check: React.FC<{ progress: number }> = ({ progress }) => (
   </svg>
 );
 
-const BEATS = [2.7, 5.6, 8.1];
+const BEATS = [2.7, 5.8, 8.3];
 
 export const Toolkit: React.FC = () => {
   const { frame, fps } = useClock();

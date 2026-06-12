@@ -27,12 +27,12 @@ module.exports = function normalizeUnicode (string) {
 }
 `;
 
-const SWAP_AT = 6.8;
+const SWAP_AT = 7.2;
 
 export const Ambient: React.FC = () => {
   const { frame, fps } = useClock();
   const swap = springAt(frame, fps, SWAP_AT, { damping: 14 });
-  const caption = springAt(frame, fps, 10.8, { damping: 16 });
+  const caption = springAt(frame, fps, 11.0, { damping: 16 });
   return (
     <SceneShell id="ambient" shakes={[{ at: SWAP_AT, amp: 8 }]}>
       <ImpactFlash atSec={SWAP_AT} peak={0.14} />
@@ -54,7 +54,7 @@ export const Ambient: React.FC = () => {
               code={INNOCENT}
               title="node_modules/normalize-unicode/index.js"
               fontSize={30}
-              typeStartSec={1.8}
+              typeStartSec={2.9}
               typeDurSec={1.8}
               width={1060}
             />
@@ -72,7 +72,7 @@ export const Ambient: React.FC = () => {
               code={EVIL}
               title="...after a malicious update"
               fontSize={30}
-              typeStartSec={7.0}
+              typeStartSec={7.4}
               typeDurSec={2.6}
               width={1000}
               accent={colors.red}

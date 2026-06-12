@@ -21,11 +21,11 @@ type Node = { x: number; y: number; r: number; appearSec: number; parent: number
 
 // rings appear in waves: direct deps, their deps, transitive explosion
 const RINGS = [
-  { count: 6, radius: 150, jitter: 16, size: 17, start: 3.7, span: 1.0 },
-  { count: 26, radius: 280, jitter: 30, size: 12, start: 5.5, span: 1.2 },
-  { count: 90, radius: 415, jitter: 48, size: 8, start: 7.0, span: 1.8 },
+  { count: 6, radius: 150, jitter: 16, size: 17, start: 4.0, span: 1.0 },
+  { count: 26, radius: 280, jitter: 30, size: 12, start: 6.1, span: 1.2 },
+  { count: 90, radius: 415, jitter: 48, size: 8, start: 7.0, span: 1.6 },
 ];
-const DANGER_AT = 8.6;
+const DANGER_AT = 8.3;
 
 const buildGraph = () => {
   const rand = mulberry32(1337);
@@ -156,7 +156,7 @@ export const Deps: React.FC = () => {
               fontFamily: fonts.mono,
               fontSize: 34,
               color: colors.cyan,
-              opacity: fadeAt(frame, fps, 3.7, 0.5),
+              opacity: fadeAt(frame, fps, 4.0, 0.5),
             }}
           >
             node_modules:{' '}
