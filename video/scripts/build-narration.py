@@ -2,6 +2,10 @@
 """Generates narration audio for each scene and writes src/timing.json
 so the Remotion composition can size scenes to the audio.
 
+Usage: build-narration.py [sceneId ...]
+With scene ids, only those clips are regenerated; other scenes keep their
+existing timing.json entries (so their hardcoded beat constants stay valid).
+
 Uses Piper TTS (https://github.com/OHF-Voice/piper1-gpl) with the
 `en_GB-cori-high` voice. Each sentence is synthesized separately and
 joined with explicit silence, which both gives us per-sentence start
@@ -13,6 +17,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 
 import numpy as np
 import soundfile as sf
@@ -40,6 +45,12 @@ SCENES = [
         "lead": 0.5,
         "tail": 0.9,
         "text": "And this is not hypothetical. Twenty eighteen: the event-stream package, with millions of downloads a week, gets handed to a new maintainer. Malicious code ships inside the Copay Bitcoin wallet, and steals users' private keys.",
+    },
+    {
+        "id": "timeline",
+        "lead": 0.5,
+        "tail": 0.9,
+        "text": "And it never stopped. Year after year, popular packages kept getting hijacked. Then twenty twenty-five broke every record. Chalk and debug: hijacked, two billion weekly downloads. And Shai-Hulud: the first self-replicating n p m worm, backdooring nearly eight hundred packages across two waves. Twenty twenty-six? Still accelerating. It's no longer a question of if. Only when.",
     },
     {
         "id": "stages",
@@ -97,6 +108,16 @@ def probe_seconds(path):
 def main():
     from piper import PiperVoice
 
+    only = set(sys.argv[1:])
+    unknown = only - {s["id"] for s in SCENES}
+    if unknown:
+        sys.exit(f"unknown scene ids: {', '.join(sorted(unknown))}")
+    timing_path = os.path.join(ROOT, "src", "timing.json")
+    existing = {}
+    if only and os.path.exists(timing_path):
+        with open(timing_path) as f:
+            existing = json.load(f)
+
     os.makedirs(AUDIO_DIR, exist_ok=True)
     voice = PiperVoice.load(MODEL)
     sr = voice.config.sample_rate
@@ -104,6 +125,9 @@ def main():
 
     timing = {}
     for scene in SCENES:
+        if only and scene["id"] not in only and scene["id"] in existing:
+            timing[scene["id"]] = existing[scene["id"]]
+            continue
         sentences = re.split(r"(?<=[.!?;]) +", scene["text"])
         chunks = []
         marks = []  # start time (s) of each sentence within the clip
@@ -135,7 +159,7 @@ def main():
         }
         print(f"{scene['id']:<10} {audio_sec:.2f}s  marks={marks}")
 
-    with open(os.path.join(ROOT, "src", "timing.json"), "w") as f:
+    with open(timing_path, "w") as f:
         json.dump(timing, f, indent=2)
     total = sum(t["durationSec"] for t in timing.values())
     print(f"total ≈ {total:.1f}s")

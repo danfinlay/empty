@@ -33,6 +33,23 @@
       8.39
     ]
   },
+  "timeline": {
+    "audio": "audio/timeline.mp3",
+    "lead": 0.5,
+    "audioSec": 25.234,
+    "durationSec": 26.634,
+    "marks": [
+      0.0,
+      1.554,
+      5.163,
+      8.075,
+      12.067,
+      18.845,
+      20.388,
+      22.185,
+      24.296
+    ]
+  },
   "stages": {
     "audio": "audio/stages.mp3",
     "lead": 0.5,
