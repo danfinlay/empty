@@ -8,18 +8,18 @@ import { colors, fonts } from '../theme';
 import timing from '../timing.json';
 
 // Beats come straight from the narration's per-sentence marks:
-// 0 "Today, LavaMoat guards MetaMask..."  1 "So."
-// 2 "Never use dependencies?"  3 "Nah."
-// 4 "Audit all of node_modules?"  5 "Nah."
-// 6 "Contain every package with LavaMoat?"  7 "Yeah."
+// 0 "Today, LavaMoat guards MetaMask..."  1 "So what's the answer?"
+// 2 "Never use dependencies?"  3 "Unrealistic."
+// 4 "Audit all of node_modules?"  5 "Impossible."
+// 6 "Contain every package, with LavaMoat?"  7 "Solved."
 // 8 "The next supply chain attack is coming."
 // 9 "Make sure it can't do any damage."  10 "github dot com..."
 const M = timing.outro.marks.map((m) => m + timing.outro.lead);
 
 const QA = [
-  { q: 'never use dependencies?', a: 'NAH', qAt: M[2], aAt: M[3], good: false },
-  { q: 'audit all of node_modules?', a: 'NAH', qAt: M[4], aAt: M[5], good: false },
-  { q: 'contain every package with LavaMoat?', a: 'YEAH', qAt: M[6], aAt: M[7], good: true },
+  { q: 'never use dependencies?', a: 'UNREALISTIC', qAt: M[2], aAt: M[3], good: false },
+  { q: 'audit all of node_modules?', a: 'IMPOSSIBLE', qAt: M[4], aAt: M[5], good: false },
+  { q: 'contain every package with LavaMoat?', a: 'SOLVED', qAt: M[6], aAt: M[7], good: true },
 ];
 
 const Stamp: React.FC<{ text: string; good: boolean; in_: number }> = ({
@@ -31,11 +31,11 @@ const Stamp: React.FC<{ text: string; good: boolean; in_: number }> = ({
     style={{
       fontFamily: fonts.mono,
       fontWeight: 700,
-      fontSize: 44,
+      fontSize: 36,
       color: good ? colors.green : colors.red,
       border: `4px solid ${good ? colors.green : colors.red}`,
       borderRadius: 12,
-      padding: '2px 18px',
+      padding: '4px 18px',
       transform: `rotate(${good ? -6 : 5}deg) scale(${in_ > 0 ? 0.8 + 0.2 * in_ : 0})`,
       opacity: in_,
       boxShadow: `0 0 ${24 * in_}px ${(good ? colors.green : colors.red) + '66'}`,
@@ -96,7 +96,7 @@ export const Outro: React.FC = () => {
             flexDirection: 'column',
             gap: 18,
             marginTop: 10,
-            width: 1080,
+            width: 1200,
           }}
         >
           {QA.map((row) => {

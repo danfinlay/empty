@@ -5,6 +5,7 @@ import { colors } from './theme';
 import { Title } from './scenes/Title';
 import { Deps } from './scenes/Deps';
 import { Incident } from './scenes/Incident';
+import { Timeline } from './scenes/Timeline';
 import { Stages } from './scenes/Stages';
 import { Mutable } from './scenes/Mutable';
 import { Ambient } from './scenes/Ambient';
@@ -18,6 +19,7 @@ const SCENES: [keyof typeof timing, React.FC][] = [
   ['title', Title],
   ['deps', Deps],
   ['incident', Incident],
+  ['timeline', Timeline],
   ['stages', Stages],
   ['mutable', Mutable],
   ['ambient', Ambient],

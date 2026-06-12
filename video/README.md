@@ -11,18 +11,24 @@ event-stream headline screenshots.
 1. **Title** — LavaMoat: javascript supplychain security
 2. **Your app, on npm** — a few deps explode into 1,000+ transitive packages
 3. **2018 event-stream incident** — malicious code shipped inside the Copay wallet
-4. **Attack surface** — install (lifecycle scripts) → build (tooling) → runtime
-5. **Why is JS such an easy target?** — flexibility: it makes JavaScript vulnerable
+4. **Attack timeline, 2018 → 2026** — the attacks accelerated: ua-parser-js (2021),
+   node-ipc & colors sabotage (2022), Ledger connect-kit drainer (2023),
+   web3.js & lottie-player (2024), the chalk & debug takeover (2B weekly
+   downloads) and the self-replicating Shai-Hulud worm (~800 packages,
+   25k+ repos across two waves, 2025), axios / node-ipc / Red Hat (2026)
+5. **Attack surface** — install (lifecycle scripts) → build (tooling) → runtime
+6. **Why is JS such an easy target?** — flexibility: it makes JavaScript vulnerable
    *and* is what lets us make it safe (the thesis, stated up front); then
    #1 — everything is mutable (`Array.prototype.map = ...`)
-6. **#2 — ambient authority** — any package can `fetch(process.env)` unnoticed
-7. **The foundation** — Hardened JavaScript (SES): that same flexibility turned
+7. **#2 — ambient authority** — any package can `fetch(process.env)` unnoticed
+8. **The foundation** — Hardened JavaScript (SES): that same flexibility turned
    into defense — `lockdown()` + `Compartment`
-8. **How LavaMoat works** — every package in its own compartment, enforced by an
+9. **How LavaMoat works** — every package in its own compartment, enforced by an
    auto-generated `policy.json`
-9. **Adopt incrementally** — `@lavamoat/allow-scripts`, `lavamoat-node`, bundler plugins
-10. **Outro** — battle-tested at MetaMask; "Never use dependencies? Nah. Audit all of
-    node_modules? Nah. LavaMoat? Yeah." (from the MetaMask LavaMoat blog post);
+10. **Adopt incrementally** — `@lavamoat/allow-scripts`, `lavamoat-node`, bundler plugins
+11. **Outro** — battle-tested at MetaMask; "Never use dependencies? Unrealistic.
+    Audit all of node_modules? Impossible. Contain every package with LavaMoat?
+    Solved." (adapted from the MetaMask LavaMoat blog post);
     github.com/LavaMoat/LavaMoat
 
 ## Rendering
