@@ -92,7 +92,7 @@ SCENES = [
         "id": "outro",
         "lead": 0.5,
         "tail": 2.0,
-        "text": "Today, LavaMoat guards MetaMask in production: tens of millions of users, every single day. So. Never use dependencies? Nah. Audit all of node_modules? Nah. Contain every package with LavaMoat? Yeah. The next supply chain attack is coming. Make sure it can't do any damage. github dot com, slash LavaMoat.",
+        "text": "Today, LavaMoat guards MetaMask in production: tens of millions of users, every single day. So what's the answer? Never use dependencies? Unrealistic. Audit all of node_modules? Impossible. Contain every package, with LavaMoat? Solved. The next supply chain attack is coming. Make sure it can't do any damage. github dot com, slash LavaMoat.",
     },
 ]
 
