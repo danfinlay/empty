@@ -1,0 +1,62 @@
+{
+  "title": {
+    "audio": "audio/title.mp3",
+    "lead": 0.4,
+    "audioSec": 6.536417,
+    "durationSec": 7.736417
+  },
+  "deps": {
+    "audio": "audio/deps.mp3",
+    "lead": 0.5,
+    "audioSec": 15.11941,
+    "durationSec": 16.51941
+  },
+  "incident": {
+    "audio": "audio/incident.mp3",
+    "lead": 0.5,
+    "audioSec": 15.261542,
+    "durationSec": 16.661542
+  },
+  "stages": {
+    "audio": "audio/stages.mp3",
+    "lead": 0.5,
+    "audioSec": 12.936735,
+    "durationSec": 14.336735000000001
+  },
+  "mutable": {
+    "audio": "audio/mutable.mp3",
+    "lead": 0.5,
+    "audioSec": 10.675601,
+    "durationSec": 12.075601
+  },
+  "ambient": {
+    "audio": "audio/ambient.mp3",
+    "lead": 0.5,
+    "audioSec": 12.730567,
+    "durationSec": 14.130567000000001
+  },
+  "hardened": {
+    "audio": "audio/hardened.mp3",
+    "lead": 0.5,
+    "audioSec": 14.367574,
+    "durationSec": 15.767574
+  },
+  "policy": {
+    "audio": "audio/policy.mp3",
+    "lead": 0.5,
+    "audioSec": 15.403628,
+    "durationSec": 16.803628
+  },
+  "toolkit": {
+    "audio": "audio/toolkit.mp3",
+    "lead": 0.5,
+    "audioSec": 13.714603,
+    "durationSec": 15.114603
+  },
+  "outro": {
+    "audio": "audio/outro.mp3",
+    "lead": 0.5,
+    "audioSec": 13.299456,
+    "durationSec": 15.399455999999999
+  }
+}
