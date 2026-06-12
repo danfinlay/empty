@@ -33,7 +33,7 @@ SCENES = [
         "id": "deps",
         "lead": 0.5,
         "tail": 0.9,
-        "text": "A modern JavaScript app is mostly code you didn't write. You add six dependencies; they bring along twelve hundred more. That's code from hundreds of strangers, all running with full access to your application.",
+        "text": "A modern JavaScript app is mostly code you didn't write. You add six dependencies; they bring along twelve hundred more. That's code from hundreds of strangers, all running with full access to your application. Any one of these modules could harm your computer, or your users' computers.",
     },
     {
         "id": "incident",

@@ -12,13 +12,14 @@
   "deps": {
     "audio": "audio/deps.mp3",
     "lead": 0.5,
-    "audioSec": 12.591,
-    "durationSec": 13.991,
+    "audioSec": 17.408,
+    "durationSec": 18.808,
     "marks": [
       0.0,
-      3.411,
-      5.499,
-      7.657
+      3.574,
+      5.65,
+      7.82,
+      12.996
     ]
   },
   "incident": {
